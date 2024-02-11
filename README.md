@@ -1,6 +1,6 @@
 # test_app
 
-A new Flutter project.
+На первую загрузку немного долго подгружает данные
 
 ## Getting Started
 
