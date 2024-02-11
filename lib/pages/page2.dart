@@ -32,9 +32,7 @@ class _Page2State extends State<Page2> {
     return FutureBuilder<List<Item>?>(
       future: parser.parseImgHTML(url),
       builder: (context, snapshot) {
-         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text("loading...");
-        }
+        print(snapshot.data);
         if (snapshot.hasData && snapshot.data![0].url == "No image") {
           return const Text("No image on this site");
         }
@@ -47,7 +45,10 @@ class _Page2State extends State<Page2> {
             },
           );
         }
-
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Text("loading...");
+        }
+        
         /// handles others as you did on question
         else {
           return const Text("No image on this site");

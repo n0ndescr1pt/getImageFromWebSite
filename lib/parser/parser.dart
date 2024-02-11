@@ -12,14 +12,16 @@ class Parser {
     //If the http request is successful the statusCode will be 200
     if (response.statusCode == 200) {
       String htmlToParse = response.body;
-      RegExp exp = RegExp(r'''"(http(s)?:\S*\.(png|jpg|jpeg).?)"'''); //выбираем все ссылки на картинки по шаблону
+      RegExp exp = RegExp(r'''"(http(s)?:\S*\.(png|jpg))"'''); //выбираем все ссылки на картинки по шаблону
       Iterable<RegExpMatch> matches = exp.allMatches(htmlToParse);
-
-      if (matches.isEmpty) { //если ничего нет возвращаем 
+      print(matches.first);
+      if (matches.isEmpty) { //если ничего нет, возвращаем 
         return [Item(resolution: "", url: "No image", size: "")];
       }
+      
 
       for (final m in matches) {
+        print(m.group(1)!);
         list.add(await _getImageInfo(m.group(1)!));
       }
 
